@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('korisnik', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->integer('tip_korisnika_id')->unsigned()->nullable();
+            $table->integer('zanimanje_id')->unsigned()->nullable();
+            $table->string('korime')->unique();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->string('ime');
+            $table->string('prezime');
+            $table->string('lozinka');
+            $table->string('telefonski_broj');
         });
     }
 
