@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterRequest;
 use App\Models\Korisnik;
 use Illuminate\Http\Request;
 
@@ -12,16 +13,8 @@ class RegisterController extends Controller
         return view('auth.registration');
     }
 
-    public function validateRegistration(Request $request)
+    public function validateRegistration(RegisterRequest $request)
     {
-        $request->validate([
-            'korime' => 'required|max:50|unique:korisnik',
-            'email' => 'required|email|max:50|unique:korisnik',
-            'ime' => 'required|max:50',
-            'prezime' => 'required|max:50',
-            'lozinka' => 'required|min:6|max:50',
-            'telefonski_broj' => 'required',
-        ]);
 
         $data = $request->all();
         Korisnik::create([
